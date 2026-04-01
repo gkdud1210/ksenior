@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한국시니어교육개발원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #003883;
+      --navy-dark: #002460;
+      --blue-mid:  #1565C0;
+      --blue-light:#DCE8F6;
+      --gold:      #C9A84C;
+      --gray-bg:   #F5F7FA;
+      --gray-line: #E0E5EE;
+      --text-dark: #1A1A2E;
+      --text-mid:  #424242;
+      --text-light:#6B7280;
+      --white:     #FFFFFF;
+      --radius:    6px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      color: var(--text-dark);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy-dark);
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 40px;
+      gap: 20px;
+    }
+    .topbar a {
+      color: rgba(255,255,255,.70);
+      font-size: 12px;
+      letter-spacing: .3px;
+      transition: color .2s;
+    }
+    .topbar a:hover { color: var(--gold); }
+    .topbar .divider { color: rgba(255,255,255,.25); font-size: 12px; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      gap: 40px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon svg { width: 26px; height: 26px; fill: var(--white); }
+    .logo-text { line-height: 1.2; }
+    .logo-text .kr { font-size: 16px; font-weight: 700; color: var(--navy); letter-spacing: -.3px; }
+    .logo-text .en { font-size: 10px; font-weight: 400; color: var(--text-light); letter-spacing: .5px; text-transform: uppercase; }
+
+    nav { flex: 1; display: flex; justify-content: flex-end; }
+    nav ul { display: flex; gap: 4px; }
+    nav ul li { position: relative; }
+    nav ul li a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dark);
+      border-radius: var(--radius);
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--blue-light);
+      color: var(--navy);
+    }
+
+    /* dropdown */
+    nav ul li .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 180px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(0,0,0,.14);
+      padding: 8px 0;
+      z-index: 200;
+    }
+    nav ul li:hover .dropdown { display: block; }
+    nav ul li .dropdown a {
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 400;
+      border-radius: 0;
+      color: var(--text-mid);
+    }
+    nav ul li .dropdown a:hover { background: var(--gray-bg); color: var(--navy); }
+
+    .btn-apply {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 30px !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background .2s !important;
+    }
+    .btn-apply:hover { background: var(--navy-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 560px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001f4d 0%, #003883 55%, #1565C0 100%);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 80% 50%, rgba(201,168,76,.12) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #1A1A2E;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 30px;
+      width: fit-content;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      max-width: 620px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,.78);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-primary {
+      background: var(--gold);
+      color: #1A1A2E;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background .2s, transform .2s;
+    }
+    .cta-primary:hover { background: #b8923e; transform: translateY(-1px); }
+    .cta-secondary {
+      border: 2px solid rgba(255,255,255,.5);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: border-color .2s, background .2s;
+    }
+    .cta-secondary:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+    /* hero stats bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 18px 40px;
+    }
+    .stat { text-align: center; }
+    .stat .num { font-size: 26px; font-weight: 700; color: var(--gold); }
+    .stat .label { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 2px; }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 80px 40px; }
+    .inner { max-width: 1300px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 3px;
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -.5px;
+      line-height: 1.25;
+    }
+    .section-header p {
+      margin-top: 14px;
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── QUICK LINKS ── */
+    .quick-links { background: var(--gray-bg); padding: 48px 40px; }
+    .quick-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .quick-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 4px solid transparent;
+    }
+    .quick-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,56,131,.12); border-top-color: var(--navy); }
+    .quick-card .icon {
+      width: 52px; height: 52px;
+      background: var(--blue-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .quick-card .icon svg { width: 26px; height: 26px; stroke: var(--navy); fill: none; stroke-width: 1.8; }
+    .quick-card h3 { font-size: 17px; font-weight: 700; color: var(--text-dark); }
+    .quick-card p { font-size: 13.5px; color: var(--text-light); line-height: 1.6; }
+    .quick-card .arrow {
+      margin-top: auto;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── PROGRAMS ── */
+    .programs { background: var(--white); }
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    .prog-card {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,.08);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .prog-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,56,131,.15); }
+    .prog-thumb {
+      height: 190px;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      position: relative;
+    }
+    .prog-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,20,60,.75) 0%, transparent 60%);
+    }
+    .prog-thumb span {
+      position: relative;
+      z-index: 1;
+      background: var(--gold);
+      color: #1A1A2E;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 30px;
+    }
+    .prog-body { padding: 24px; background: var(--white); }
+    .prog-body h3 { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .prog-body p { font-size: 13.5px; color: var(--text-light); line-height: 1.65; margin-bottom: 18px; }
+    .prog-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .prog-meta span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--blue-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* program thumb colors */
+    .c1 { background: linear-gradient(135deg, #1a3a6e 0%, #2a62b0 100%); }
+    .c2 { background: linear-gradient(135deg, #1a4a3e 0%, #2a8a65 100%); }
+    .c3 { background: linear-gradient(135deg, #4a1a1a 0%, #9a4040 100%); }
+    .c4 { background: linear-gradient(135deg, #3a2a0e 0%, #8a6430 100%); }
+    .c5 { background: linear-gradient(135deg, #2a1a4a 0%, #6040a0 100%); }
+    .c6 { background: linear-gradient(135deg, #1a3a4a 0%, #3080a0 100%); }
+
+    /* ── NEWS ── */
+    .news-section { background: var(--gray-bg); }
+    .news-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+    }
+    .news-featured {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,.07);
+    }
+    .news-featured-thumb {
+      height: 240px;
+      background: linear-gradient(135deg, #003883 0%, #1565C0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .news-featured-thumb .badge {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: var(--gold);
+      color: #1A1A2E;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 30px;
+    }
+    .news-featured-thumb svg { width: 64px; height: 64px; stroke: rgba(255,255,255,.2); fill: none; stroke-width: 1; }
+    .news-featured-body { padding: 28px; }
+    .news-featured-body .date { font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
+    .news-featured-body h3 { font-size: 20px; font-weight: 700; color: var(--text-dark); line-height: 1.35; margin-bottom: 12px; }
+    .news-featured-body p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    .news-list {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.07);
+      overflow: hidden;
+    }
+    .news-list-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--gray-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .news-list-header h3 { font-size: 16px; font-weight: 700; }
+    .news-list-header a { font-size: 12px; color: var(--navy); font-weight: 600; }
+    .news-item {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--gray-line);
+      transition: background .2s;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-item:hover { background: var(--gray-bg); }
+    .news-item .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 5px;
+    }
+    .news-item .title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.45;
+      margin-bottom: 5px;
+    }
+    .news-item .meta { font-size: 12px; color: var(--text-light); }
+
+    /* ── NOTICE BOARD ── */
+    .notice-section { background: var(--white); }
+    .notice-tabs { display: flex; border-bottom: 2px solid var(--gray-line); margin-bottom: 0; }
+    .notice-tab {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color .2s, border-color .2s;
+    }
+    .notice-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+    .notice-table { width: 100%; border-collapse: collapse; margin-top: 0; }
+    .notice-table th, .notice-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-line);
+      font-size: 14px;
+    }
+    .notice-table th { font-weight: 700; color: var(--text-light); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; background: var(--gray-bg); }
+    .notice-table td { color: var(--text-dark); }
+    .notice-table tr:hover td { background: var(--gray-bg); }
+    .notice-table .new-badge {
+      background: #E53935;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── FACULTY ── */
+    .faculty-section { background: var(--gray-bg); }
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .faculty-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .faculty-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,56,131,.13); }
+    .faculty-avatar {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+    }
+    .faculty-info { padding: 18px; border-top: 3px solid var(--navy); }
+    .faculty-info .name { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .faculty-info .role { font-size: 12.5px; color: var(--navy); font-weight: 600; margin-bottom: 6px; }
+    .faculty-info .spec { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--blue-mid) 100%);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .cta-banner h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 700; color: var(--white); margin-bottom: 16px; letter-spacing: -.5px; }
+    .cta-banner p { font-size: 17px; color: rgba(255,255,255,.8); margin-bottom: 36px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+      padding: 15px 36px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background .2s, transform .2s;
+    }
+    .btn-white:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .btn-outline-white {
+      border: 2px solid rgba(255,255,255,.6);
+      color: var(--white);
+      padding: 15px 36px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0D1B3E;
+      color: rgba(255,255,255,.75);
+      padding: 60px 40px 32px;
+    }
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand .logo-text .kr { color: var(--white); }
+    .footer-brand .logo-text .en { color: rgba(255,255,255,.5); }
+    .footer-desc { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.7; margin: 16px 0 20px; max-width: 280px; }
+    .footer-contact { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,.6); }
+    .footer-contact strong { color: rgba(255,255,255,.9); }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 28px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,.45); transition: color .2s; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1050px) {
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+      .prog-grid { grid-template-columns: repeat(2, 1fr); }
+      .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hero { height: 480px; }
+      .hero-stats { gap: 28px; }
+      .news-grid { grid-template-columns: 1fr; }
+      .quick-grid { grid-template-columns: 1fr 1fr; }
+      .prog-grid { grid-template-columns: 1fr; }
+      .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 60px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .topbar { padding: 0 20px; }
+    }
+    @media (max-width: 480px) {
+      .quick-grid { grid-template-columns: 1fr; }
+      .faculty-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .hero-stats { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="#">사이트맵</a>
+  <span class="divider">|</span>
+  <a href="#">접근성</a>
+  <span class="divider">|</span>
+  <a href="#">개인정보처리방침</a>
+  <span class="divider">|</span>
+  <a href="#" style="color:var(--gold);font-weight:600;">수강신청 바로가기</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3L1 9l11 6 11-6-11-6zM1 15l11 6 11-6M1 9l11 6 11-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="kr">한국시니어교육개발원</div>
+        <div class="en">Korea Senior Education Development Institute</div>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">기관소개</a>
+          <ul class="dropdown">
+            <li><a href="#">설립목적 및 연혁</a></li>
+            <li><a href="#">조직도</a></li>
+            <li><a href="#">오시는 길</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">교육과정</a>
+          <ul class="dropdown">
+            <li><a href="#">정규과정</a></li>
+            <li><a href="#">특별과정</a></li>
+            <li><a href="#">온라인 과정</a></li>
+            <li><a href="#">기업맞춤 과정</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">연구활동</a>
+          <ul class="dropdown">
+            <li><a href="#">연구소개</a></li>
+            <li><a href="#">연구성과</a></li>
+            <li><a href="#">발간물</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">커뮤니티</a>
+          <ul class="dropdown">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">뉴스&미디어</a></li>
+            <li><a href="#">동문 네트워크</a></li>
+          </ul>
+        </li>
+        <li><a href="#" class="btn-apply">수강신청</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <span class="hero-badge">2025 신규 과정 개설</span>
+    <h1>시니어의 새로운 출발,<br><em>배움이 곧 힘입니다</em></h1>
+    <p>한국시니어교육개발원은 중장년층의 재교육과 평생학습을 선도하며<br>활기찬 제2의 인생을 설계합니다.</p>
+    <div class="hero-ctas">
+      <a href="#" class="cta-primary">과정 둘러보기</a>
+      <a href="#" class="cta-secondary">원장 인사말</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">23,000+</div><div class="label">누적 교육생</div></div>
+    <div class="stat"><div class="num">180+</div><div class="label">개설 과정 수</div></div>
+    <div class="stat"><div class="num">95%</div><div class="label">수강 만족도</div></div>
+    <div class="stat"><div class="num">15년</div><div class="label">교육 경험</div></div>
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<div class="quick-links">
+  <div class="quick-grid">
+    <a href="#" class="quick-card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>정규 교육과정</h3>
+      <p>체계적인 커리큘럼으로 설계된 학기 단위 교육 프로그램</p>
+      <span class="arrow">자세히 보기 →</span>
+    </a>
+    <a href="#" class="quick-card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h3>수강신청 안내</h3>
+      <p>2025년 2학기 수강신청 일정 및 방법 안내</p>
+      <span class="arrow">신청하기 →</span>
+    </a>
+    <a href="#" class="quick-card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>강사진 소개</h3>
+      <p>각 분야 최고 전문가로 구성된 시니어교육 전문 교수진</p>
+      <span class="arrow">만나보기 →</span>
+    </a>
+    <a href="#" class="quick-card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>취업·창업 지원</h3>
+      <p>교육 수료 후 재취업·창업을 돕는 종합 지원 서비스</p>
+      <span class="arrow">알아보기 →</span>
+    </a>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="programs">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-tag">교육 프로그램</span>
+      <h2>당신의 가능성을 여는 과정들</h2>
+      <p>중장년층의 역량 강화와 새로운 도전을 위한 다양한 교육 과정을 운영합니다.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-thumb c1">
+          <span>인기과정</span>
+        </div>
+        <div class="prog-body">
+          <h3>디지털 역량 강화 과정</h3>
+          <p>스마트폰 활용부터 SNS 마케팅까지, 디지털 시대에 필요한 핵심 역량을 체계적으로 습득합니다.</p>
+          <div class="prog-meta">
+            <span>12주 과정</span>
+            <span>온·오프라인</span>
+            <span>초급~중급</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-thumb c2">
+          <span>신규개설</span>
+        </div>
+        <div class="prog-body">
+          <h3>소상공인 창업 실전 과정</h3>
+          <p>사업 아이디어 발굴부터 법인 설립, 마케팅 전략까지 창업의 전 과정을 실습 중심으로 배웁니다.</p>
+          <div class="prog-meta">
+            <span>8주 과정</span>
+            <span>오프라인</span>
+            <span>중급</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-thumb c3">
+          <span>추천과정</span>
+        </div>
+        <div class="prog-body">
+          <h3>생애 재설계 컨설팅 과정</h3>
+          <p>재무, 건강, 관계, 사회참여 등 인생 후반전을 설계하는 통합 생애 코칭 프로그램입니다.</p>
+          <div class="prog-meta">
+            <span>4주 과정</span>
+            <span>집중 과정</span>
+            <span>전 연령</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-thumb c4">
+          <span>자격증 과정</span>
+        </div>
+        <div class="prog-body">
+          <h3>시니어 재취업 특화 과정</h3>
+          <p>이력서·면접 준비부터 직업 탐색, 취업 연계까지 전담 매니저와 함께 재취업을 준비합니다.</p>
+          <div class="prog-meta">
+            <span>6주 과정</span>
+            <span>온·오프라인</span>
+            <span>50대↑</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-thumb c5">
+          <span>기업 연계</span>
+        </div>
+        <div class="prog-body">
+          <h3>전문 강사 양성 과정</h3>
+          <p>시니어 교육 분야의 전문 강사로 활동할 수 있도록 교수법, 콘텐츠 개발, 실습 등을 교육합니다.</p>
+          <div class="prog-meta">
+            <span>16주 과정</span>
+            <span>오프라인</span>
+            <span>심화</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-thumb c6">
+          <span>온라인</span>
+        </div>
+        <div class="prog-body">
+          <h3>건강 관리 & 웰니스 과정</h3>
+          <p>의료 전문가와 함께하는 건강 자기관리, 만성질환 예방, 심리건강 케어 통합 프로그램입니다.</p>
+          <div class="prog-meta">
+            <span>4주 과정</span>
+            <span>온라인</span>
+            <span>전 연령</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & NOTICE -->
+<section class="news-section">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-tag">소식 & 공지</span>
+      <h2>최신 소식을 확인하세요</h2>
+    </div>
+    <div class="news-grid">
+      <div class="news-featured">
+        <div class="news-featured-thumb">
+          <span class="badge">주요 뉴스</span>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l6 6v8a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        </div>
+        <div class="news-featured-body">
+          <div class="date">2025.07.28</div>
+          <h3>2025년 하반기 신규 과정 수강생 모집 — 디지털·창업·재취업 3개 과정 동시 개강</h3>
+          <p>한국시니어교육개발원은 2025년 하반기를 맞아 시니어 맞춤형 신규 교육 과정 3종을 동시 개설합니다. 오는 9월부터 운영되는 본 과정은...</p>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-list-header">
+          <h3>공지사항</h3>
+          <a href="#">전체보기 →</a>
+        </div>
+        <div class="news-item">
+          <div class="tag">모집</div>
+          <div class="title">2025 하반기 정규과정 수강생 모집 안내 <span class="new-badge">NEW</span></div>
+          <div class="meta">2025.07.25</div>
+        </div>
+        <div class="news-item">
+          <div class="tag">행사</div>
+          <div class="title">제12회 시니어 창업 아이디어 공모전 접수</div>
+          <div class="meta">2025.07.20</div>
+        </div>
+        <div class="news-item">
+          <div class="tag">안내</div>
+          <div class="title">여름 특강 집중 과정 일정 변경 안내</div>
+          <div class="meta">2025.07.15</div>
+        </div>
+        <div class="news-item">
+          <div class="tag">채용</div>
+          <div class="title">2025년 하반기 강사 채용 공고</div>
+          <div class="meta">2025.07.10</div>
+        </div>
+        <div class="news-item">
+          <div class="tag">지원</div>
+          <div class="title">정부 교육 바우처 지원 대상 과정 안내</div>
+          <div class="meta">2025.07.05</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE TABLE -->
+<section class="notice-section">
+  <div class="inner">
+    <div class="section-header" style="text-align:left; margin-bottom:24px;">
+      <span class="section-tag">커뮤니티</span>
+      <h2>공지 · 자료실</h2>
+    </div>
+    <div class="notice-tabs">
+      <div class="notice-tab active">전체</div>
+      <div class="notice-tab">과정 안내</div>
+      <div class="notice-tab">수강료 지원</div>
+      <div class="notice-tab">취업·창업</div>
+      <div class="notice-tab">자료실</div>
+    </div>
+    <table class="notice-table">
+      <thead>
+        <tr>
+          <th style="width:60px">번호</th>
+          <th>제목</th>
+          <th style="width:100px">분류</th>
+          <th style="width:100px">작성일</th>
+          <th style="width:70px">조회</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>공지</td>
+          <td><a href="#">[필독] 2025년 하반기 교육과정 일정표 <span class="new-badge">NEW</span></a></td>
+          <td>과정 안내</td>
+          <td>2025.07.28</td>
+          <td>1,042</td>
+        </tr>
+        <tr>
+          <td>공지</td>
+          <td><a href="#">고용노동부 내일배움카드 지원 과정 목록</a></td>
+          <td>수강료 지원</td>
+          <td>2025.07.20</td>
+          <td>874</td>
+        </tr>
+        <tr>
+          <td>315</td>
+          <td><a href="#">2025 시니어 창업 아이디어 공모전 결과 발표</a></td>
+          <td>취업·창업</td>
+          <td>2025.07.18</td>
+          <td>563</td>
+        </tr>
+        <tr>
+          <td>314</td>
+          <td><a href="#">디지털 역량 강화 과정 8월 개강 안내</a></td>
+          <td>과정 안내</td>
+          <td>2025.07.15</td>
+          <td>712</td>
+        </tr>
+        <tr>
+          <td>313</td>
+          <td><a href="#">시니어 재취업 특화 과정 수료생 취업 현황 공개</a></td>
+          <td>취업·창업</td>
+          <td>2025.07.10</td>
+          <td>489</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="faculty-section">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-tag">교수진</span>
+      <h2>최고의 전문가들이 함께합니다</h2>
+      <p>각 분야 최고의 전문가들이 여러분의 새로운 출발을 함께 돕습니다.</p>
+    </div>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: #EEF2FF;">👨‍🏫</div>
+        <div class="faculty-info">
+          <div class="name">김성민 교수</div>
+          <div class="role">디지털 교육 담당</div>
+          <div class="spec">前 삼성전자 수석연구원<br>디지털 전환 전문가</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: #F0FDF4;">👩‍💼</div>
+        <div class="faculty-info">
+          <div class="name">이지연 원장</div>
+          <div class="role">창업 · 경영 담당</div>
+          <div class="spec">前 중소벤처기업부 자문<br>시니어 창업 전문 코치</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: #FFF7ED;">👨‍⚕️</div>
+        <div class="faculty-info">
+          <div class="name">박재홍 원장</div>
+          <div class="role">건강 · 웰니스 담당</div>
+          <div class="spec">前 서울대학교병원 교수<br>예방의학 전문의</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: #FDF4FF;">👩‍🏫</div>
+        <div class="faculty-info">
+          <div class="name">최수진 박사</div>
+          <div class="role">생애설계 · 심리 담당</div>
+          <div class="spec">前 한국노인인력개발원<br>생애설계 전문 상담사</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="inner">
+    <h2>지금 바로 새로운 출발을 시작하세요</h2>
+    <p>2025년 하반기 수강 신청이 진행 중입니다. 정원이 한정되어 있으니 서둘러 주세요.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-white">수강신청 바로가기</a>
+      <a href="#" class="btn-outline-white">상담 문의하기</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L1 9l11 6 11-6-11-6zM1 15l11 6 11-6M1 9l11 6 11-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="kr">한국시니어교육개발원</div>
+          <div class="en">Korea Senior Education Development Institute</div>
+        </div>
+      </div>
+      <p class="footer-desc">중장년층의 평생학습과 재교육을 선도하여 활기찬 시니어 사회를 만들어 가는 전문 교육기관입니다.</p>
+      <div class="footer-contact">
+        <div><strong>주소</strong> &nbsp; 서울특별시 강남구 테헤란로 123, 시니어교육빌딩 5층</div>
+        <div><strong>대표전화</strong> &nbsp; 02-1234-5678</div>
+        <div><strong>이메일</strong> &nbsp; info@ksedi.or.kr</div>
+        <div><strong>운영시간</strong> &nbsp; 평일 09:00 – 18:00</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>기관소개</h4>
+      <ul>
+        <li><a href="#">설립목적 및 연혁</a></li>
+        <li><a href="#">조직도</a></li>
+        <li><a href="#">원장 인사말</a></li>
+        <li><a href="#">협력기관</a></li>
+        <li><a href="#">오시는 길</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>교육과정</h4>
+      <ul>
+        <li><a href="#">정규과정</a></li>
+        <li><a href="#">특별과정</a></li>
+        <li><a href="#">온라인 과정</a></li>
+        <li><a href="#">기업맞춤 과정</a></li>
+        <li><a href="#">수강신청</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>정보 & 지원</h4>
+      <ul>
+        <li><a href="#">공지사항</a></li>
+        <li><a href="#">취업·창업 지원</a></li>
+        <li><a href="#">수강료 지원</a></li>
+        <li><a href="#">자료실</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 한국시니어교육개발원. All rights reserved.</div>
+    <div style="display:flex;gap:16px;">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+      <a href="#">이메일무단수집거부</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Notice tab switching
+  document.querySelectorAll('.notice-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.notice-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Sticky header shadow
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 4px 20px rgba(0,0,0,.12)'
+      : '0 2px 12px rgba(0,0,0,.08)';
+  });
+</script>
+</body>
+</html>
