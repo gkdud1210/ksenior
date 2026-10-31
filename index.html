@@ -15,7 +15,7 @@
       --navy-dark: #002460;
       --blue-mid:  #1565C0;
       --blue-light:#DCE8F6;
-      --gold:      #C9A84C;
+      --gold:      #F5C02A;
       --gray-bg:   #F5F7FA;
       --gray-line: #E0E5EE;
       --text-dark: #1A1A2E;
@@ -81,15 +81,14 @@
       flex-shrink: 0;
     }
     .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--navy);
+      width: 48px;
+      height: 48px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .logo-icon svg { width: 26px; height: 26px; fill: var(--white); }
+    .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
     .logo-text { line-height: 1.2; }
     .logo-text .kr { font-size: 16px; font-weight: 700; color: var(--navy); letter-spacing: -.3px; }
     .logo-text .en { font-size: 10px; font-weight: 400; color: var(--text-light); letter-spacing: .5px; text-transform: uppercase; }
@@ -154,11 +153,40 @@
       overflow: hidden;
       background: linear-gradient(135deg, #001f4d 0%, #003883 55%, #1565C0 100%);
     }
+    /* 배경 사진 슬라이드: 7장 × 6초 */
+    .hero-slides { position: absolute; inset: 0; z-index: 0; }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: heroFade 42s infinite;
+    }
+    .hero-slide:nth-child(2) { animation-delay: 6s; }
+    .hero-slide:nth-child(3) { animation-delay: 12s; }
+    .hero-slide:nth-child(4) { animation-delay: 18s; }
+    .hero-slide:nth-child(5) { animation-delay: 24s; }
+    .hero-slide:nth-child(6) { animation-delay: 30s; }
+    .hero-slide:nth-child(7) { animation-delay: 36s; }
+    @keyframes heroFade {
+      0%     { opacity: 0; transform: scale(1); }
+      4%     { opacity: 1; }
+      14.3%  { opacity: 1; }
+      18.3%  { opacity: 0; transform: scale(1.06); }
+      100%   { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { animation: none; }
+      .hero-slide:first-child { opacity: 1; }
+    }
     .hero-pattern {
       position: absolute;
       inset: 0;
+      z-index: 1;
       background-image:
-        radial-gradient(circle at 80% 50%, rgba(201,168,76,.12) 0%, transparent 60%),
+        linear-gradient(90deg, rgba(0,31,77,.92) 0%, rgba(0,56,131,.78) 45%, rgba(0,56,131,.35) 100%),
+        radial-gradient(circle at 80% 50%, rgba(245,192,42,.12) 0%, transparent 60%),
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .hero-content {
@@ -213,7 +241,7 @@
       font-size: 15px;
       transition: background .2s, transform .2s;
     }
-    .cta-primary:hover { background: #b8923e; transform: translateY(-1px); }
+    .cta-primary:hover { background: #E0AB12; transform: translateY(-1px); }
     .cta-secondary {
       border: 2px solid rgba(255,255,255,.5);
       color: var(--white);
@@ -228,6 +256,7 @@
     /* hero stats bar */
     .hero-stats {
       position: absolute;
+      z-index: 3;
       bottom: 0;
       left: 0; right: 0;
       background: rgba(0,0,0,.35);
@@ -325,6 +354,7 @@
       grid-column: 2;
     }
     .prog-card {
+      display: block;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 3px 14px rgba(0,0,0,.08);
@@ -354,16 +384,24 @@
       letter-spacing: 1px;
       padding: 4px 12px;
       border-radius: 30px;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .prog-thumb.photo {
+      background-size: cover;
+      background-position: center;
     }
     .prog-thumb .cert-icon {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 64px;
       line-height: 1;
-      margin: 0 auto 12px;
-      display: block;
-      text-align: center;
-      width: 100%;
+      background: none;
+      padding: 0;
     }
     .prog-body { padding: 24px; background: var(--white); }
     .prog-body h3 { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
@@ -415,6 +453,36 @@
     .why-icon svg { width: 30px; height: 30px; stroke: var(--navy); fill: none; stroke-width: 1.8; }
     .why-card h3 { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; }
     .why-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    /* ── FIELDS (활동 분야) ── */
+    .fields-section { background: var(--white); }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .field-card {
+      border: 1px solid var(--gray-line);
+      border-radius: 14px;
+      padding: 32px 24px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field-card:hover { border-color: var(--navy); box-shadow: 0 6px 20px rgba(0,56,131,.1); }
+    .field-card.new { border-top: 4px solid var(--gold); }
+    .field-card .emoji { font-size: 34px; margin-bottom: 14px; }
+    .field-card h3 { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .field-card p { font-size: 13.5px; color: var(--text-light); line-height: 1.7; }
+    .field-card .field-new {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--gold);
+      color: #1A1A2E;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
 
     /* ── NEWS ── */
     .news-section { background: var(--white); }
@@ -493,6 +561,7 @@
       margin-bottom: 5px;
     }
     .news-item .meta { font-size: 12px; color: var(--text-light); }
+    .news-empty { padding: 48px 24px; text-align: center; font-size: 14px; color: var(--text-light); }
 
     /* ── NOTICE BOARD ── */
     .notice-section { background: var(--gray-bg); }
@@ -518,6 +587,7 @@
     .notice-table th { font-weight: 700; color: var(--text-light); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; background: var(--white); }
     .notice-table td { color: var(--text-dark); }
     .notice-table tr:hover td { background: var(--blue-light); }
+    .notice-table td.notice-empty { padding: 48px 16px; text-align: center; color: var(--text-light); background: var(--white); }
     .notice-table .new-badge {
       background: #E53935;
       color: white;
@@ -574,6 +644,7 @@
       padding-bottom: 40px;
       border-bottom: 1px solid rgba(255,255,255,.1);
     }
+    .footer-brand .logo-icon { background: var(--white); padding: 5px; }
     .footer-brand .logo-text .kr { color: var(--white); }
     .footer-brand .logo-text .en { color: rgba(255,255,255,.5); }
     .footer-desc { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.7; margin: 16px 0 20px; max-width: 280px; }
@@ -616,6 +687,7 @@
       .prog-grid { grid-template-columns: repeat(2, 1fr); }
       .prog-grid .prog-card:last-child:nth-child(3n+1) { grid-column: auto; }
       .why-grid { grid-template-columns: 1fr 1fr; }
+      .field-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
@@ -626,6 +698,7 @@
       .quick-grid { grid-template-columns: 1fr 1fr; }
       .prog-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
+      .field-grid { grid-template-columns: 1fr; }
       section { padding: 60px 20px; }
       .footer-grid { grid-template-columns: 1fr; }
       .topbar { padding: 0 20px; }
@@ -654,11 +727,7 @@
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 3L1 9l11 6 11-6-11-6zM1 15l11 6 11-6M1 9l11 6 11-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </div>
+      <div class="logo-icon"><img src="images/logo-emblem.png" alt=""></div>
       <div class="logo-text">
         <div class="kr">한국시니어교육개발원</div>
         <div class="en">Korea Senior Education Development Institute</div>
@@ -676,23 +745,23 @@
           </ul>
         </li>
         <li>
-          <a href="#">자격증 과정</a>
+          <a href="course.html">자격증 과정</a>
           <ul class="dropdown">
-            <li><a href="#">시니어보드게임전문가</a></li>
-            <li><a href="#">병원동행매니저</a></li>
-            <li><a href="#">미술심리상담사</a></li>
-            <li><a href="#">전래동화지도사</a></li>
-            <li><a href="#">인지활동지도사</a></li>
-            <li><a href="#">실버댄스지도사</a></li>
-            <li><a href="#">실버크레이션지도사</a></li>
+            <li><a href="course.html#boardgame">시니어보드게임전문가</a></li>
+            <li><a href="course.html#hospital">병원동행매니저</a></li>
+            <li><a href="course.html#folktale">전래동화지도사</a></li>
+            <li><a href="course.html#cognitive">인지활동지도사</a></li>
+            <li><a href="course.html#dance">실버댄스지도사</a></li>
+            <li><a href="course.html#recreation">실버레크레이션지도사</a></li>
+            <li><a href="course.html#health">통합건강지도사</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">자격증 발급</a>
+          <a href="certificate.html">자격증 발급</a>
           <ul class="dropdown">
-            <li><a href="#">발급 안내</a></li>
-            <li><a href="#">발급 신청</a></li>
-            <li><a href="#">자격증 조회</a></li>
+            <li><a href="certificate.html#guide">발급 안내</a></li>
+            <li><a href="certificate.html#apply">발급 신청</a></li>
+            <li><a href="certificate.html#lookup">자격증 조회</a></li>
           </ul>
         </li>
         <li>
@@ -711,21 +780,30 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide" style="background-image: url('images/boardgame.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/hospital.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/folktale.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/cognitive.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/dance.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/recreation.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/health.jpg');"></div>
+  </div>
   <div class="hero-pattern"></div>
   <div class="hero-content">
-    <span class="hero-badge">요양원 · 요양보호센터 전문 강사 양성</span>
-    <h1>어르신의 삶에 활력을,<br><em>강사의 꿈에 날개를</em></h1>
-    <p>한국시니어교육개발원은 요양원·요양보호센터에서 강의할<br>전문 강사를 양성하고 국가공인 민간자격증을 발급합니다.</p>
+    <span class="hero-badge">요양원 · 시니어 웰니스 전문 강사 양성</span>
+    <h1>안녕하세요,<br><em>한국시니어교육개발원입니다.</em></h1>
+    <p>한국시니어교육개발원은 요양원·요양보호센터와 시니어 웰니스 기관·기업에서<br>활동할 전문 강사를 양성하고 국가공인 민간자격증을 발급합니다.</p>
     <div class="hero-ctas">
       <a href="#programs" class="cta-primary">자격증 과정 보기</a>
       <a href="about.html#greeting" class="cta-secondary">원장 인사말</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="num">7종</div><div class="label">전문 자격증 과정</div></div>
-    <div class="stat"><div class="num">500+</div><div class="label">수료 강사</div></div>
-    <div class="stat"><div class="num">95%</div><div class="label">수강 만족도</div></div>
-    <div class="stat"><div class="num">취업</div><div class="label">요양원·요양보호센터 연계</div></div>
+    <div class="stat"><div class="num">1급·전문강사</div><div class="label">2단계 자격 체계</div></div>
+    <div class="stat"><div class="num">실습 중심</div><div class="label">현장 실무 교육</div></div>
+    <div class="stat"><div class="num">민간자격</div><div class="label">수료 후 자격증 발급</div></div>
+    <div class="stat"><div class="num">돌봄·웰니스</div><div class="label">요양원부터 웰니스 기관·기업까지</div></div>
   </div>
 </section>
 
@@ -737,7 +815,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
       <h3>자격증 과정 안내</h3>
-      <p>요양원·요양보호센터 강사를 위한 7가지 전문 자격증 과정</p>
+      <p>요양원·시니어 웰니스 현장 강사를 위한 7가지 전문 자격증 과정</p>
       <span class="arrow">과정 보기 →</span>
     </a>
     <a href="#" class="quick-card">
@@ -748,7 +826,7 @@
       <p>현재 모집 중인 과정 일정 및 수강신청 방법 안내</p>
       <span class="arrow">신청하기 →</span>
     </a>
-    <a href="#" class="quick-card">
+    <a href="certificate.html" class="quick-card">
       <div class="icon">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       </div>
@@ -761,7 +839,7 @@
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
       <h3>취업 연계 지원</h3>
-      <p>수료 후 요양원·요양보호센터 강사 취업 연계 지원</p>
+      <p>수료 후 요양원·웰니스 기관·기업 강사 활동 연계 지원</p>
       <span class="arrow">자세히 보기 →</span>
     </a>
   </div>
@@ -773,13 +851,12 @@
     <div class="section-header">
       <span class="section-tag">자격증 과정</span>
       <h2>7가지 전문 강사 자격증 과정</h2>
-      <p>요양원·요양보호센터에서 어르신들을 위한 다양한 프로그램을 가르칠 수 있는<br>전문 강사 자격증을 취득하세요.</p>
+      <p>요양원·요양보호센터는 물론 시니어 웰니스 기관과 기업에서도<br>어르신을 위한 프로그램을 가르칠 수 있는 전문 강사 자격증을 취득하세요.</p>
     </div>
     <div class="prog-grid">
 
-      <div class="prog-card">
-        <div class="prog-thumb c1">
-          <span class="cert-icon">🎲</span>
+      <a href="course.html#boardgame" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/boardgame.jpg');">
           <span>인기과정</span>
         </div>
         <div class="prog-body">
@@ -791,11 +868,10 @@
             <span>요양원·복지관</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="prog-card">
-        <div class="prog-thumb c2">
-          <span class="cert-icon">🏥</span>
+      <a href="course.html#hospital" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/hospital.jpg'); background-position: center 30%;">
           <span>신규개설</span>
         </div>
         <div class="prog-body">
@@ -807,27 +883,10 @@
             <span>의료기관·방문서비스</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="prog-card">
-        <div class="prog-thumb c3">
-          <span class="cert-icon">🎨</span>
-          <span>추천과정</span>
-        </div>
-        <div class="prog-body">
-          <h3>미술심리상담사</h3>
-          <p>미술 활동을 통해 어르신의 심리적 안정과 정서 표현을 돕는 미술심리 프로그램을 운영하는 전문 상담사 자격증 과정입니다.</p>
-          <div class="prog-meta">
-            <span>민간자격증</span>
-            <span>요양원·복지관</span>
-            <span>심리상담</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="prog-card">
-        <div class="prog-thumb c4">
-          <span class="cert-icon">📖</span>
+      <a href="course.html#folktale" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/folktale.jpg'); background-position: center 35%;">
           <span>자격증 과정</span>
         </div>
         <div class="prog-body">
@@ -839,11 +898,10 @@
             <span>회상치료</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="prog-card">
-        <div class="prog-thumb c5">
-          <span class="cert-icon">🧩</span>
+      <a href="course.html#cognitive" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/cognitive.jpg'); background-position: center 40%;">
           <span>핵심과정</span>
         </div>
         <div class="prog-body">
@@ -855,11 +913,10 @@
             <span>치매예방·인지훈련</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="prog-card">
-        <div class="prog-thumb c6">
-          <span class="cert-icon">💃</span>
+      <a href="course.html#dance" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/dance.jpg'); background-position: center 45%;">
           <span>자격증 과정</span>
         </div>
         <div class="prog-body">
@@ -871,24 +928,72 @@
             <span>신체활동</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="prog-card">
-        <div class="prog-thumb c7">
-          <span class="cert-icon">🏺</span>
+      <a href="course.html#recreation" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/recreation.jpg'); background-position: center 40%;">
           <span>자격증 과정</span>
         </div>
         <div class="prog-body">
-          <h3>실버크레이션지도사</h3>
-          <p>클레이 아트·공예 활동을 통해 어르신의 손 기능 향상과 창의적 표현을 지원하는 실버크레이션 프로그램 지도사 자격증 과정입니다.</p>
+          <h3>실버레크레이션지도사</h3>
+          <p>노래·율동·게임 등 다양한 레크레이션 활동으로 어르신의 신체 활력과 즐거운 사회적 교류를 이끄는 실버레크레이션 프로그램 지도사 자격증 과정입니다.</p>
           <div class="prog-meta">
             <span>민간자격증</span>
             <span>요양원·복지관</span>
-            <span>작업치료</span>
+            <span>레크레이션</span>
           </div>
         </div>
-      </div>
+      </a>
 
+      <a href="course.html#health" class="prog-card">
+        <div class="prog-thumb photo" style="background-image: url('images/health.jpg'); background-position: center 40%;">
+          <span>신규개설</span>
+        </div>
+        <div class="prog-body">
+          <h3>통합건강지도사</h3>
+          <p>신체·인지·정서 건강을 아우르는 통합 건강 프로그램으로 아동부터 어르신까지 전 연령의 건강 체크와 삶의 질 향상을 돕는 전문 지도사 자격증 과정입니다.</p>
+          <div class="prog-meta">
+            <span class="prog-badge-new">NEW</span>
+            <span>민간자격증</span>
+            <span>전 연령</span>
+            <span>건강관리</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FIELDS -->
+<section class="fields-section" id="fields">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-tag">활동 분야</span>
+      <h2>돌봄 현장에서 시니어 웰니스까지</h2>
+      <p>자격 취득 후 요양 시설은 물론, 어르신의 건강하고 활기찬 노후를 돕는<br>시니어 웰니스 기관과 기업에서도 전문 강사로 활동할 수 있습니다.</p>
+    </div>
+    <div class="field-grid">
+      <div class="field-card">
+        <div class="emoji">🏡</div>
+        <h3>요양원·요양보호센터</h3>
+        <p>입소·재가 어르신을 대상으로 인지·정서·신체 활동 프로그램을 운영합니다.</p>
+      </div>
+      <div class="field-card">
+        <div class="emoji">🤝</div>
+        <h3>복지관·주간보호센터</h3>
+        <p>노인복지관, 주간보호센터, 경로당 등에서 여가·인지 활동 수업을 진행합니다.</p>
+      </div>
+      <div class="field-card new">
+        <div class="emoji">🌿</div>
+        <h3>시니어 웰니스 기관<span class="field-new">NEW</span></h3>
+        <p>웰니스 센터, 시니어 건강·운동 시설, 실버타운 등에서 건강한 노후를 위한 웰니스 프로그램을 진행합니다.</p>
+      </div>
+      <div class="field-card new">
+        <div class="emoji">🏢</div>
+        <h3>시니어 관련 기업<span class="field-new">NEW</span></h3>
+        <p>헬스케어·시니어 서비스 기업 등에서 고객 대상 건강 프로그램이나 직원 교육 강사로 활동합니다.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -899,7 +1004,7 @@
     <div class="section-header">
       <span class="section-tag">한국시니어교육개발원을 선택해야 하는 이유</span>
       <h2>전문적이고 체계적인 강사 양성</h2>
-      <p>요양원·요양보호센터 현장에서 바로 활용할 수 있는 실무 중심 교육을 제공합니다.</p>
+      <p>돌봄 현장과 시니어 웰니스 현장에서 바로 활용할 수 있는 실무 중심 교육을 제공합니다.</p>
     </div>
     <div class="why-grid">
       <div class="why-card">
@@ -907,21 +1012,21 @@
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>공인 민간자격증 발급</h3>
-        <p>교육 수료 후 민간자격증을 발급하여 요양원·복지관 취업 시 공식 자격을 갖출 수 있도록 지원합니다.</p>
+        <p>교육 수료 후 민간자격증을 발급하여 요양원·복지관·웰니스 기관 활동 시 공식 자격을 갖출 수 있도록 지원합니다.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
           <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3>현장 실무 중심 교육</h3>
-        <p>실제 요양원·요양보호센터 현장에서 바로 적용할 수 있는 프로그램 기획·운영 실습 위주의 커리큘럼을 운영합니다.</p>
+        <p>실제 요양원·요양보호센터와 웰니스 현장에서 바로 적용할 수 있는 프로그램 기획·운영 실습 위주의 커리큘럼을 운영합니다.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>취업 연계 지원</h3>
-        <p>수료 후 인근 요양원·요양보호센터·복지관과 연계하여 강사로 활동할 수 있도록 취업 정보를 제공하고 지원합니다.</p>
+        <p>수료 후 요양원·요양보호센터·복지관과 시니어 웰니스 기관·기업과 연계하여 강사로 활동할 수 있도록 취업 정보를 제공하고 지원합니다.</p>
       </div>
     </div>
   </div>
@@ -937,13 +1042,11 @@
     <div class="news-grid">
       <div class="news-featured">
         <div class="news-featured-thumb">
-          <span class="badge">주요 공지</span>
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l6 6v8a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         </div>
         <div class="news-featured-body">
-          <div class="date">2026.04.16</div>
-          <h3>2026년 상반기 자격증 과정 수강생 모집 — 7개 과정 동시 모집</h3>
-          <p>한국시니어교육개발원은 2026년 상반기 요양원·요양보호센터 전문 강사 양성을 위한 7가지 자격증 과정 수강생을 모집합니다. 수강 문의는 전화(000-0000-0000) 또는 이메일(ksenior26@naver.com)로 연락해 주세요.</p>
+          <h3>등록된 공지사항이 없습니다.</h3>
+          <p>새로운 소식이 등록되면 이곳에서 안내해 드립니다.</p>
         </div>
       </div>
       <div class="news-list">
@@ -951,31 +1054,7 @@
           <h3>공지사항</h3>
           <a href="#">전체보기 →</a>
         </div>
-        <div class="news-item">
-          <div class="tag">모집</div>
-          <div class="title">2026년 상반기 자격증 과정 수강생 모집 <span class="new-badge">NEW</span></div>
-          <div class="meta">2026.04.16</div>
-        </div>
-        <div class="news-item">
-          <div class="tag">자격증</div>
-          <div class="title">병원동행매니저 자격증 과정 신규 개설 안내</div>
-          <div class="meta">2026.04.10</div>
-        </div>
-        <div class="news-item">
-          <div class="tag">안내</div>
-          <div class="title">자격증 발급 절차 및 소요 기간 안내</div>
-          <div class="meta">2026.04.05</div>
-        </div>
-        <div class="news-item">
-          <div class="tag">취업</div>
-          <div class="title">대전·충청 지역 요양원 강사 채용 정보 안내</div>
-          <div class="meta">2026.03.28</div>
-        </div>
-        <div class="news-item">
-          <div class="tag">안내</div>
-          <div class="title">수강료 지원 제도 및 국비 환급 안내</div>
-          <div class="meta">2026.03.20</div>
-        </div>
+        <div class="news-empty">등록된 공지사항이 없습니다.</div>
       </div>
     </div>
   </div>
@@ -1007,39 +1086,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>공지</td>
-          <td><a href="#">[필독] 2026년 상반기 자격증 과정 일정표 <span class="new-badge">NEW</span></a></td>
-          <td>과정 안내</td>
-          <td>2026.04.16</td>
-          <td>128</td>
-        </tr>
-        <tr>
-          <td>공지</td>
-          <td><a href="#">자격증 발급 신청 방법 및 소요 기간 안내</a></td>
-          <td>자격증 발급</td>
-          <td>2026.04.10</td>
-          <td>94</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td><a href="#">병원동행매니저 과정 신규 개설 및 수강생 모집</a></td>
-          <td>과정 안내</td>
-          <td>2026.04.10</td>
-          <td>76</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td><a href="#">대전·충청 지역 요양원 강사 채용 연계 정보</a></td>
-          <td>취업 정보</td>
-          <td>2026.03.28</td>
-          <td>112</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td><a href="#">인지활동지도사 과정 수료생 현장 활동 후기 모음</a></td>
-          <td>자료실</td>
-          <td>2026.03.20</td>
-          <td>89</td>
+          <td colspan="5" class="notice-empty">등록된 게시물이 없습니다.</td>
         </tr>
       </tbody>
     </table>
@@ -1050,10 +1097,10 @@
 <div class="cta-banner">
   <div class="inner">
     <h2>지금 바로 전문 강사의 꿈을 시작하세요</h2>
-    <p>요양원·요양보호센터에서 어르신들과 함께하는 보람 있는 강사 생활, 한국시니어교육개발원이 함께합니다.</p>
+    <p>요양원부터 시니어 웰니스 현장까지, 어르신들과 함께하는 보람 있는 강사 생활, 한국시니어교육개발원이 함께합니다.</p>
     <div class="cta-buttons">
       <a href="#" class="btn-white">수강신청 바로가기</a>
-      <a href="#" class="btn-outline-white">전화 상담하기 (000-0000-0000)</a>
+      <a href="sms:01028419141?&amp;body=%ED%95%9C%EA%B5%AD%EC%8B%9C%EB%8B%88%EC%96%B4%EA%B5%90%EC%9C%A1%EA%B0%9C%EB%B0%9C%EC%9B%90%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4." class="btn-outline-white">문자 상담하기 (010-2841-9141)</a>
     </div>
   </div>
 </div>
@@ -1063,21 +1110,16 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3L1 9l11 6 11-6-11-6zM1 15l11 6 11-6M1 9l11 6 11-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
+        <div class="logo-icon"><img src="images/logo-emblem.png" alt=""></div>
         <div class="logo-text">
           <div class="kr">한국시니어교육개발원</div>
           <div class="en">Korea Senior Education Development Institute</div>
         </div>
       </div>
-      <p class="footer-desc">요양원·요양보호센터 전문 강사를 양성하고 민간자격증을 발급하는 시니어 교육 전문기관입니다.</p>
+      <p class="footer-desc">요양원·요양보호센터부터 시니어 웰니스 기관·기업까지, 시니어 전문 강사를 양성하고 민간자격증을 발급하는 시니어 교육 전문기관입니다.</p>
       <div class="footer-contact">
         <div><strong>대표</strong> &nbsp; 최하영</div>
-        <div><strong>주소</strong> &nbsp; 대전광역시 동구 백룡로48번길 30, (자양동) 1층</div>
-        <div><strong>대표전화</strong> &nbsp; 000-0000-0000</div>
+        <div><strong>문자 상담</strong> &nbsp; 010-2841-9141</div>
         <div><strong>이메일</strong> &nbsp; ksenior26@naver.com</div>
         <div><strong>사업자등록번호</strong> &nbsp; 111-82-74375</div>
         <div><strong>운영시간</strong> &nbsp; 평일 09:00 – 18:00</div>
@@ -1095,13 +1137,13 @@
     <div class="footer-col">
       <h4>자격증 과정</h4>
       <ul>
-        <li><a href="#">시니어보드게임전문가</a></li>
-        <li><a href="#">병원동행매니저</a></li>
-        <li><a href="#">미술심리상담사</a></li>
-        <li><a href="#">전래동화지도사</a></li>
-        <li><a href="#">인지활동지도사</a></li>
-        <li><a href="#">실버댄스지도사</a></li>
-        <li><a href="#">실버크레이션지도사</a></li>
+        <li><a href="course.html#boardgame">시니어보드게임전문가</a></li>
+        <li><a href="course.html#hospital">병원동행매니저</a></li>
+        <li><a href="course.html#folktale">전래동화지도사</a></li>
+        <li><a href="course.html#cognitive">인지활동지도사</a></li>
+        <li><a href="course.html#dance">실버댄스지도사</a></li>
+        <li><a href="course.html#recreation">실버레크레이션지도사</a></li>
+        <li><a href="course.html#health">통합건강지도사</a></li>
       </ul>
     </div>
     <div class="footer-col">
