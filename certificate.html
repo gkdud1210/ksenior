@@ -731,7 +731,6 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      nav { display: none; }
       .page-body { padding: 48px 20px; }
       .steps { grid-template-columns: 1fr 1fr; }
       .fee-grid { grid-template-columns: 1fr; }
@@ -740,7 +739,84 @@
       .sub-nav-inner { padding: 0 16px; overflow-x: auto; }
     }
     @media (max-width: 480px) {
-      .steps { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; row-gap: 28px; }
+    }
+
+    /* 한글은 단어 단위로 줄바꿈 */
+    body { word-break: keep-all; overflow-wrap: break-word; }
+
+    /* ── MOBILE MENU ── */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      margin-left: auto;
+      border: 0;
+      background: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .topbar { display: none; }
+      .header-inner { height: 64px; padding: 0 16px; gap: 12px; }
+      .menu-toggle { display: flex; }
+      header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        box-shadow: 0 12px 24px rgba(0,0,0,.12);
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+        padding: 4px 20px 20px;
+      }
+      header.menu-open nav { display: block; }
+      header nav ul { flex-direction: column; gap: 0; }
+      header nav ul li a {
+        padding: 14px 4px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 0;
+        border-bottom: 1px solid var(--gray-line);
+      }
+      header nav ul li a:hover, header nav ul li a.active { background: none; }
+      header nav ul li .dropdown,
+      header nav ul li:hover .dropdown {
+        display: flex;
+        flex-wrap: wrap;
+        position: static;
+        min-width: 0;
+        box-shadow: none;
+        padding: 6px 0 10px;
+        gap: 0 4px;
+      }
+      header nav ul li .dropdown a {
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 400;
+        border-bottom: none;
+      }
+      header nav .btn-apply { margin-top: 16px; text-align: center; border-bottom: none; }
+      .sub-nav { top: 64px; }
+    }
+    @media (max-width: 420px) {
+      .logo-text .en { display: none; }
+      .logo-text .kr { font-size: 17px; }
     }
   </style>
 </head>
@@ -809,6 +885,7 @@
         <li><a href="#" class="btn-apply">수강신청</a></li>
       </ul>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -1282,6 +1359,19 @@
       ? '0 4px 20px rgba(0,0,0,.12)'
       : '0 2px 12px rgba(0,0,0,.08)';
   });
+
+  // 모바일 메뉴 열고 닫기
+  (() => {
+    const hdr = document.querySelector('header');
+    const btn = hdr.querySelector('.menu-toggle');
+    const setOpen = open => {
+      hdr.classList.toggle('menu-open', open);
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+    };
+    btn.addEventListener('click', () => setOpen(!hdr.classList.contains('menu-open')));
+    hdr.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  })();
 </script>
 </body>
 </html>
