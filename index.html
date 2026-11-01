@@ -852,6 +852,36 @@
       .logo-text .kr { font-size: 17px; }
       .logo-text .en { font-size: 8.5px; letter-spacing: 0; margin-top: 2px; }
     }
+
+    /* ── 모바일: 활동 분야·선택 이유 카드를 가로형으로 ── */
+    @media (max-width: 768px) {
+      section { padding: 52px 20px; }
+      .section-header { margin-bottom: 32px; }
+      .field-grid, .why-grid { gap: 12px; }
+      .field-card {
+        display: grid; grid-template-columns: 40px 1fr; column-gap: 14px;
+        padding: 18px 18px; align-items: start;
+      }
+      .field-card .emoji { grid-row: 1 / span 2; font-size: 28px; line-height: 1.2; margin: 0; }
+      .field-card h3 { font-size: 16px; margin-bottom: 4px; }
+      .field-card p { font-size: 13px; line-height: 1.6; }
+      .why-card {
+        display: grid; grid-template-columns: 48px 1fr; column-gap: 16px;
+        padding: 20px 18px; text-align: left; align-items: start;
+      }
+      .why-icon { grid-row: 1 / span 2; width: 48px; height: 48px; border-radius: 12px; margin: 0; }
+      .why-icon svg { width: 24px; height: 24px; }
+      .why-card h3 { font-size: 16px; margin-bottom: 4px; }
+      .why-card p { font-size: 13px; line-height: 1.6; }
+    }
+    /* ── 모바일: 꼬리말 2단 ── */
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-desc { max-width: none; }
+      .footer-col h4 { margin-bottom: 12px; }
+      .footer-col ul { gap: 8px; }
+    }
   </style>
 </head>
 <body>

@@ -833,6 +833,36 @@
       .logo-text .kr { font-size: 17px; }
       .logo-text .en { font-size: 8.5px; letter-spacing: 0; margin-top: 2px; }
     }
+
+    /* ── 모바일: 발급 절차를 세로 타임라인으로, 비용 카드를 가로형으로 ── */
+    @media (max-width: 480px) {
+      .steps { grid-template-columns: 1fr; row-gap: 18px; margin-bottom: 40px; }
+      .steps::before { display: block; top: 22px; bottom: 22px; left: 21px; right: auto; width: 2px; height: auto; }
+      .step {
+        display: grid; grid-template-columns: 44px 1fr; column-gap: 14px;
+        text-align: left; align-items: start; padding: 0;
+      }
+      .step-num { grid-row: 1 / span 2; width: 44px; height: 44px; font-size: 17px; margin: 0; }
+      .step-label { font-size: 15px; margin: 2px 0 2px; }
+      .step-desc { font-size: 13px; }
+      .step-desc br { display: none; }
+      .fee-grid { gap: 12px; margin-bottom: 36px; }
+      .fee-card {
+        display: grid; grid-template-columns: 40px 1fr; column-gap: 14px;
+        padding: 18px; text-align: left; align-items: start;
+      }
+      .fee-card .emoji { grid-row: 1 / span 3; font-size: 28px; line-height: 1.2; margin: 0; }
+      .fee-card h4 { margin-bottom: 2px; }
+      .fee-card .amount { font-size: 20px; margin-bottom: 2px; }
+    }
+    /* ── 모바일: 꼬리말 2단 ── */
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-desc { max-width: none; }
+      .footer-col h4 { margin-bottom: 12px; }
+      .footer-col ul { gap: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -939,27 +969,27 @@
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-label">과정 수료</div>
-        <div class="step-desc">소정의 교육 과정을<br>모두 이수합니다.</div>
+        <div class="step-desc">소정의 교육 과정을 <br>모두 이수합니다.</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-label">수료증 발급</div>
-        <div class="step-desc">수료 확인 후<br>수료증을 수령합니다.</div>
+        <div class="step-desc">수료 확인 후 <br>수료증을 수령합니다.</div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-label">자격증 신청</div>
-        <div class="step-desc">이메일 또는 방문으로<br>자격증 발급을 신청합니다.</div>
+        <div class="step-desc">이메일 또는 방문으로 <br>자격증 발급을 신청합니다.</div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div class="step-label">심사 처리</div>
-        <div class="step-desc">서류 확인 및<br>발급 처리 (5~7 영업일)</div>
+        <div class="step-desc">서류 확인 및 <br>발급 처리 (5~7 영업일)</div>
       </div>
       <div class="step done">
         <div class="step-num">✓</div>
         <div class="step-label">자격증 수령</div>
-        <div class="step-desc">등기 우편 발송 또는<br>방문 수령</div>
+        <div class="step-desc">등기 우편 발송 또는 <br>방문 수령</div>
       </div>
     </div>
 
@@ -999,19 +1029,19 @@
         <div class="emoji">💳</div>
         <h4>자격증 발급 비용</h4>
         <div class="amount">50,000원</div>
-        <div class="note">과정별 동일 금액<br>계좌이체 또는 방문 납부</div>
+        <div class="note">과정별 동일 금액 <br>계좌이체 또는 방문 납부</div>
       </div>
       <div class="fee-card">
         <div class="emoji">📅</div>
         <h4>처리 기간</h4>
         <div class="amount">5~7 영업일</div>
-        <div class="note">서류 접수 완료 후 기산<br>성수기에는 최대 2주 소요</div>
+        <div class="note">서류 접수 완료 후 기산 <br>성수기에는 최대 2주 소요</div>
       </div>
       <div class="fee-card">
         <div class="emoji">📬</div>
         <h4>발급 방법</h4>
         <div class="amount">등기 우편</div>
-        <div class="note">방문 수령도 가능<br>(본원 운영 시간 내 사전 연락)</div>
+        <div class="note">방문 수령도 가능 <br>(본원 운영 시간 내 사전 연락)</div>
       </div>
     </div>
 
