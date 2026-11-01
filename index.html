@@ -749,6 +749,31 @@
       .cta-primary, .cta-secondary { padding: 12px 22px; font-size: 14px; }
     }
 
+    /* ── 모바일 다듬기 ── */
+    @media (max-width: 768px) {
+      .hero { padding: 0; }
+      .hero-stats { border-radius: 0; }
+      .quick-links { padding: 32px 16px; }
+      .news-featured.is-empty { display: none; }
+      .notice-tabs { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .notice-tabs::-webkit-scrollbar { display: none; }
+      .notice-tab { padding: 12px 14px; white-space: nowrap; flex-shrink: 0; }
+      .notice-table th:nth-child(1), .notice-table td:nth-child(1),
+      .notice-table th:nth-child(3), .notice-table td:nth-child(3),
+      .notice-table th:nth-child(5), .notice-table td:nth-child(5) { display: none; }
+      .notice-table td.notice-empty { display: table-cell; }
+      .notice-table th, .notice-table td { padding: 12px; }
+    }
+    @media (max-width: 480px) {
+      .quick-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .quick-card { padding: 18px 16px; gap: 8px; }
+      .quick-card .icon { width: 40px; height: 40px; border-radius: 10px; }
+      .quick-card .icon svg { width: 21px; height: 21px; }
+      .quick-card h3 { font-size: 15px; }
+      .quick-card p { font-size: 12.5px; line-height: 1.5; }
+      .quick-card .arrow { font-size: 12.5px; }
+    }
+
     /* 한글은 단어 단위로 줄바꿈 */
     body { word-break: keep-all; overflow-wrap: break-word; }
 
@@ -1160,7 +1185,7 @@
       <h2>최신 소식을 확인하세요</h2>
     </div>
     <div class="news-grid">
-      <div class="news-featured">
+      <div class="news-featured is-empty">
         <div class="news-featured-thumb">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l6 6v8a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         </div>
