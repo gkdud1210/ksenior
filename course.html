@@ -517,6 +517,18 @@
       .footer-col h4 { margin-bottom: 12px; }
       .footer-col ul { gap: 8px; }
     }
+  
+    /* ── 모바일 꼬리말 간소화 (링크 묶음은 상단 메뉴와 중복이라 숨김) ── */
+    @media (max-width: 768px) {
+      footer { padding: 32px 20px 24px; }
+      .footer-grid { display: block; padding-bottom: 20px; }
+      .footer-col, .footer-desc { display: none; }
+      .footer-brand .logo { margin-bottom: 14px; }
+      .footer-contact { font-size: 12.5px; line-height: 1.75; }
+      .footer-bottom { margin-top: 16px; font-size: 11.5px; gap: 8px; flex-direction: column; align-items: flex-start; }
+      .footer-bottom .fb-dup { display: none; }
+      .footer-bottom > div:last-child { gap: 12px !important; flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
@@ -575,7 +587,7 @@
         <li>
           <a href="#">커뮤니티</a>
           <ul class="dropdown">
-            <li><a href="#">공지사항</a></li>
+            <li><a href="index.html#notice">공지사항</a></li>
             <li><a href="#">자료실</a></li>
             <li><a href="#">FAQ</a></li>
           </ul>
@@ -939,7 +951,7 @@
     <div class="footer-col">
       <h4>정보 & 지원</h4>
       <ul>
-        <li><a href="#">공지사항</a></li>
+        <li><a href="index.html#notice">공지사항</a></li>
         <li><a href="certificate.html">자격증 발급</a></li>
         <li><a href="#">취업 연계</a></li>
         <li><a href="#">자료실</a></li>
@@ -948,7 +960,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 한국시니어교육개발원. All rights reserved. &nbsp;|&nbsp; 사업자등록번호 111-82-74375 &nbsp;|&nbsp; 대표 최하영</div>
+    <div>© 2026 한국시니어교육개발원. All rights reserved.<span class="fb-dup"> &nbsp;|&nbsp; 사업자등록번호 111-82-74375 &nbsp;|&nbsp; 대표 최하영</span></div>
     <div style="display:flex;gap:16px;">
       <a href="#">개인정보처리방침</a>
       <a href="#">이용약관</a>

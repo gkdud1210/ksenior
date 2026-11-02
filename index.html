@@ -597,6 +597,7 @@
 
     /* ── NOTICE BOARD ── */
     .notice-section { background: var(--gray-bg); }
+    #notice { scroll-margin-top: 80px; }
     .notice-tabs { display: flex; border-bottom: 2px solid var(--gray-line); margin-bottom: 0; }
     .notice-tab {
       padding: 12px 24px;
@@ -618,6 +619,16 @@
     }
     .notice-table th { font-weight: 700; color: var(--text-light); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; background: var(--white); }
     .notice-table td { color: var(--text-dark); }
+    .notice-title { background: none; border: 0; padding: 0; font: inherit; color: var(--text-dark); cursor: pointer; text-align: left; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .notice-title:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+    .notice-label { font-size: 11px; font-weight: 700; color: #1A1A2E; background: var(--gold); padding: 2px 9px; border-radius: 20px; }
+    .notice-detail td { background: var(--white); padding: 4px 16px 22px; }
+    .notice-table tr.notice-detail:hover td { background: var(--white); }
+    .notice-body { border-left: 3px solid var(--gold); padding: 6px 0 6px 18px; font-size: 14px; line-height: 1.8; color: var(--text-mid); }
+    .notice-body p + p, .notice-body ul + p { margin-top: 10px; }
+    .notice-body ul { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+    .notice-body li strong { color: var(--navy); margin-right: 8px; }
+    .notice-body a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
     .notice-table tr:hover td { background: var(--blue-light); }
     .notice-table td.notice-empty { padding: 48px 16px; text-align: center; color: var(--text-light); background: var(--white); }
     .notice-table .new-badge {
@@ -890,6 +901,23 @@
       .footer-col h4 { margin-bottom: 12px; }
       .footer-col ul { gap: 8px; }
     }
+  
+    /* ── 모바일 꼬리말 간소화 (링크 묶음은 상단 메뉴와 중복이라 숨김) ── */
+    @media (max-width: 768px) {
+      footer { padding: 32px 20px 24px; }
+      .footer-grid { display: block; padding-bottom: 20px; }
+      .footer-col, .footer-desc { display: none; }
+      .footer-brand .logo { margin-bottom: 14px; }
+      .footer-contact { font-size: 12.5px; line-height: 1.75; }
+      .footer-bottom { margin-top: 16px; font-size: 11.5px; gap: 8px; flex-direction: column; align-items: flex-start; }
+      .footer-bottom .fb-dup { display: none; }
+      .footer-bottom > div:last-child { gap: 12px !important; flex-wrap: wrap; }
+    }
+    @media (max-width: 768px) {
+      .notice-table tr.notice-detail td { display: table-cell; padding: 0 12px 18px; }
+      .notice-body { padding-left: 14px; font-size: 13.5px; }
+      .notice-body li strong { display: block; margin: 0; }
+    }
   </style>
 </head>
 <body>
@@ -948,7 +976,7 @@
         <li>
           <a href="#">커뮤니티</a>
           <ul class="dropdown">
-            <li><a href="#">공지사항</a></li>
+            <li><a href="index.html#notice">공지사항</a></li>
             <li><a href="#">자료실</a></li>
             <li><a href="#">FAQ</a></li>
           </ul>
@@ -1243,18 +1271,18 @@
 </section>
 
 <!-- NOTICE TABLE -->
-<section class="notice-section">
+<section class="notice-section" id="notice">
   <div class="inner">
     <div class="section-header" style="text-align:left; margin-bottom:24px;">
       <span class="section-tag">커뮤니티</span>
       <h2>공지 · 자료실</h2>
     </div>
     <div class="notice-tabs">
-      <div class="notice-tab active">전체</div>
-      <div class="notice-tab">과정 안내</div>
-      <div class="notice-tab">자격증 발급</div>
-      <div class="notice-tab">취업 정보</div>
-      <div class="notice-tab">자료실</div>
+      <div class="notice-tab active" data-cat="">전체</div>
+      <div class="notice-tab" data-cat="과정 안내">과정 안내</div>
+      <div class="notice-tab" data-cat="자격증 발급">자격증 발급</div>
+      <div class="notice-tab" data-cat="취업 정보">취업 정보</div>
+      <div class="notice-tab" data-cat="자료실">자료실</div>
     </div>
     <table class="notice-table">
       <thead>
@@ -1267,7 +1295,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="notice-row" data-cat="과정 안내">
+          <td>1</td>
+          <td><button type="button" class="notice-title" aria-expanded="false" aria-controls="notice-1"><span class="notice-label">모집 예정</span>2기 자격증 교육과정 수강생 모집 안내</button></td>
+          <td>과정 안내</td>
+          <td>2026.11.02</td>
+          <td>–</td>
+        </tr>
+        <tr class="notice-detail" id="notice-1" data-cat="과정 안내" hidden>
+          <td colspan="5">
+            <div class="notice-body">
+              <p>안녕하세요, 한국시니어교육개발원입니다.</p>
+              <p>1기 교육과정이 모두 마무리되었습니다. 함께해 주신 수강생 여러분께 진심으로 감사드립니다.<br>이어서 <strong>2기 교육과정 수강생을 모집할 예정</strong>입니다.</p>
+              <ul>
+                <li><strong>모집 과정</strong> 시니어보드게임전문가 · 병원동행매니저 · 전래동화지도사 · 인지활동지도사 · 실버댄스지도사 · 실버레크레이션지도사 · 통합건강지도사</li>
+                <li><strong>교육 일정 · 모집 기간</strong> 확정되는 대로 이 공지사항을 통해 안내해 드리겠습니다.</li>
+                <li><strong>사전 문의</strong> 문자 <a href="sms:01028419141">010-2841-9141</a> · 이메일 <a href="mailto:ksenior26@naver.com?subject=%5B2%EA%B8%B0%20%EB%AA%A8%EC%A7%91%20%EB%AC%B8%EC%9D%98%5D">ksenior26@naver.com</a></li>
+              </ul>
+              <p>미리 문의해 주시면 모집이 시작될 때 먼저 연락드리겠습니다.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="notice-empty-row" hidden>
           <td colspan="5" class="notice-empty">등록된 게시물이 없습니다.</td>
         </tr>
       </tbody>
@@ -1332,7 +1381,7 @@
     <div class="footer-col">
       <h4>정보 & 지원</h4>
       <ul>
-        <li><a href="#">공지사항</a></li>
+        <li><a href="index.html#notice">공지사항</a></li>
         <li><a href="#">자격증 발급</a></li>
         <li><a href="#">취업 연계</a></li>
         <li><a href="#">자료실</a></li>
@@ -1341,7 +1390,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 한국시니어교육개발원. All rights reserved. &nbsp;|&nbsp; 사업자등록번호 111-82-74375 &nbsp;|&nbsp; 대표 최하영</div>
+    <div>© 2026 한국시니어교육개발원. All rights reserved.<span class="fb-dup"> &nbsp;|&nbsp; 사업자등록번호 111-82-74375 &nbsp;|&nbsp; 대표 최하영</span></div>
     <div style="display:flex;gap:16px;">
       <a href="#">개인정보처리방침</a>
       <a href="#">이용약관</a>
@@ -1352,10 +1401,29 @@
 
 <script>
   // Notice tab switching
+  // 공지 탭: 분류별로 게시물 거르기
   document.querySelectorAll('.notice-tab').forEach(tab => {
     tab.addEventListener('click', function() {
       document.querySelectorAll('.notice-tab').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
+      const cat = this.dataset.cat || '';
+      let shown = 0;
+      document.querySelectorAll('.notice-row').forEach(row => {
+        const ok = !cat || row.dataset.cat === cat;
+        row.hidden = !ok; if (ok) shown++;
+        const detail = document.getElementById(row.querySelector('.notice-title').getAttribute('aria-controls'));
+        if (detail && !ok) detail.hidden = true;
+        if (!ok) row.querySelector('.notice-title').setAttribute('aria-expanded', 'false');
+      });
+      document.querySelector('.notice-empty-row').hidden = shown > 0;
+    });
+  });
+  // 공지 제목을 누르면 본문 열고 닫기
+  document.querySelectorAll('.notice-title').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open);
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
     });
   });
 
